@@ -1,5 +1,5 @@
 .bb-omnibar>.bb-omnibar-desktop>.bb-omnibar-bar>.bb-omnibar-accountheader {
-    padding-right: 30px;
+    padding-right: 30px !important;
 }
 
 .bb-chat-container {

@@ -54,7 +54,7 @@
     function chatWindow() {
         var directive = {
             bindToController: true,
-            controller: ChatWindowController
+            controller: ChatWindowController,
             controllerAs: 'vm',
             restrict: 'E',
             template:
