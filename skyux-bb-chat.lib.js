@@ -6,7 +6,6 @@
         var _config = {};
 
         var DEFAULTS = {
-            baseUrl: 'https://host.nxt.blackbaud.com/bb-chat-otg/'
         };
 
         provider.configure = configure;
@@ -25,15 +24,11 @@
             return service;
 
             function initialize() {
-                var scope = $rootScope.$new(true);
-                scope.chatUrl = _config.baseUrl;
-                var el = $compile('<bb-chat-window></bb-chat-window>')(scope);
-
-                $document.find('body').append(el);
+                angular.extend(service, _config);
             }
         }
 
-        get.$inject = ['$document', '$rootScope', '$compile'];
+        get.$inject = [];
     }
 
     chatProvider.$inject = [];
@@ -41,11 +36,11 @@
     function ChatWindowController($scope, $element) {
         var vm = this;
 
-        vm.chatUrl = $scope.chatUrl;
+        vm.chatUrl = 'https://host.nxt.blackbaud.com/bb-chat-otg/';
         vm.toggleDisplay = toggleDisplay;
 
         function toggleDisplay() {
-            $element.parent().toggleClass('closed');
+            $element.find('.bb-chat-container').toggleClass('closed');
         }
     }
 
@@ -62,7 +57,7 @@
                 '  <div class="bb-chat-invoker title="Chat" ng-click="vm.toggleDisplay()"><i class="fa fa-weixin"></i>' +
                 '  </div>' +
                 '  <div class="bb-chat-panel">' +
-                '    <iframe ng-src="{{vm.chatUrl}}" frameborder="0" allowfullscreen="allowfullscreen"></iframe>' +
+                '    <iframe src="{{vm.chatUrl}}" frameborder="0" allowfullscreen="allowfullscreen"></iframe>' +
                 '  </div>' +
                 '</div>'
         };
@@ -72,7 +67,17 @@
 
     chatWindow.$inject = [];
 
+    function run($document, $rootScope, $compile) {
+        var scope = $rootScope.$new(true);
+        var el = $compile('<bb-chat-window></bb-chat-window>')(scope);
+
+        $document.find('body').append(el);
+    }
+
+    run.$inject = ['$document', '$rootScope', '$compile', 'bbChat'];
+
     angular.module('sky.chat', [])
+        .run(run)
         .provider('bbChat', chatProvider)
         .directive('bbChatWindow', chatWindow);
 
