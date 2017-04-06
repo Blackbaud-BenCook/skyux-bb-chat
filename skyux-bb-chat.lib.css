@@ -1,0 +1,58 @@
+.bb-omnibar>.bb-omnibar-desktop>.bb-omnibar-bar>.bb-omnibar-accountheader {
+    padding-right: 30px;
+}
+
+.bb-chat-container {
+    line-height: normal;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+.bb-chat-container.closed {
+    z-index: 1037;
+}
+
+.bb-chat-container .bb-chat-invoker {
+    border-bottom-left-radius: 24px;
+    border-top-left-radius: 24px;
+    background: blue;
+    float: left;
+    padding: 12px 20px 7px 10px;
+    font-size: 17px;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    height: 48px;
+    width: 40px;
+}
+
+.bb-chat-container .bb-chat-invoker:before {
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    width: 2ex;
+    height: 2ex;
+    font-size: 14px;
+    line-height: 2ex;
+    border-radius: 1.4ex;
+    margin-right: 4px;
+    padding: 1px;
+    border: 2px solid;
+    text-decoration: none;
+}
+
+.bb-chat-container.closed .bb-chat-panel {
+    display: none;
+}
+
+.bb-chat-container .bb-chat-panel {
+    width: 450px;
+    height: 591px;
+    display: block;
+    float: right;
+    -webkit-box-shadow: -1px 2px 9px 0 rgba(50,50,50,.41);
+    box-shadow: -1px 2px 9px 0 rgba(50,50,50,.41);
+    background-color: #f3f3f4;
+}
