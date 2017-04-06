@@ -62,7 +62,7 @@
 
     chatWindow.$inject = [];
 
-    angular.module('sky.chat')
+    angular.module('sky.chat', [])
         .provider('bbChat', chatProvider)
         .directive('bbChatWindow', chatWindow);
 
