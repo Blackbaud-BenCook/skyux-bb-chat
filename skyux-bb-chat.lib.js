@@ -38,18 +38,28 @@
 
     chatProvider.$inject = [];
 
+    function ChatWindowController($scope, $element) {
+        var vm = this;
+
+        vm.chatUrl = $scope.chatUrl;
+        vm.toggleDisplay = toggleDisplay;
+
+        function toggleDisplay() {
+            $element.parent().toggleClass('closed');
+        }
+    }
+
+    ChatWindowController.$inject = ['$scope', '$element'];
+
     function chatWindow() {
         var directive = {
-            controller: ['$scope', function ($scope) {
-                var vm = this;
-
-                vm.chatUrl = $scope.chatUrl;
-            }],
+            bindToController: true,
+            controller: ChatWindowController
             controllerAs: 'vm',
             restrict: 'E',
             template:
                 '<div class="bb-chat-container closed">' +
-                '  <div class="bb-chat-invoker title="Chat">' +
+                '  <div class="bb-chat-invoker title="Chat" ng-click="vm.toggleDisplay()"><i class="fa fa-weixin"></i>' +
                 '  </div>' +
                 '  <div class="bb-chat-panel">' +
                 '    <iframe ng-src="{{vm.chatUrl}}" frameborder="0" allowfullscreen="allowfullscreen"></iframe>' +
